@@ -5,13 +5,14 @@
 	<title>Simplon Charleville- Formulaire pour ajouter un utilisateur</title>
 </head>
 <!-- bootstrap Style CSS File -->
+<link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <!-- Custom Style CSS File -->
 <link rel="stylesheet" type="text/css" href="../css/custom-style.css">
 <!-- Font-Awesome Style CSS File -->
 <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+    
     
 <body>
 
@@ -103,5 +104,8 @@
         
         <input type="submit" value="Créer un compte">
     </form>
+    <script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/core.js"></script>
 </body>
 </html>

@@ -38,11 +38,12 @@ class UserManager{
     public function __construct(){
 
         $host_name = 'localhost';
-        $database = 'Promo';
+        $database = 'promo';
         $user_name = 'root';
         $password = '';
 
         $this->pdo = new PDO("mysql:host=$host_name; dbname=$database;", $user_name, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8') );
+    
     } 
     
     /**
@@ -54,14 +55,14 @@ class UserManager{
      */
     private function create(User &$user){
 
-        $this->pdoStatement = $this->pdo->prepare('INSERT INTO userpromo VALUES (NULL, :name, :firstname,:Mail, :Password, :age, :citation, :language, :project, :photo ) ');
+        $this->pdoStatement = $this->pdo->prepare('INSERT INTO userpromo VALUES (NULL, :name, :firstname, :mail, :password, :age, :citation, :language, :project, :photo ) ');
 
         //liaison des parametres
 
         $this->pdoStatement->bindValue(':name', $user->getName(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':firstname', $user->getFirstname(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':Password', $user->getPassword(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':Mail', $user->getMail(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':mail', $user->getMail(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':password', $user->getPassword(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':age', $user->getAge(), PDO::PARAM_INT);
         $this->pdoStatement->bindValue(':citation', $user->getCitation(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':language', $user->getLanguage(), PDO::PARAM_STR);
@@ -72,7 +73,7 @@ class UserManager{
         //executer la requete
 
         $executeIsOk = $this->pdoStatement->execute();
-
+        
         if(!$executeIsOk){
             return false;
         }
@@ -80,8 +81,6 @@ class UserManager{
             
             $id = $this->pdo->lastInsertId();
             $user = $this->read($id);
-
-
             return true;
         }
 

@@ -27,7 +27,7 @@ $messageMail = "";
  */
 if(!empty($_POST)){
 
-    $name = htmlentities($_POST["name"]);
+    $nameuser = htmlentities($_POST["name"]);
     $firstname = htmlentities($_POST["firstname"]);
     $mail = $_POST['mail'];
     $pass = $_POST['motDePasse'];
@@ -60,7 +60,7 @@ if(!empty($_POST)){
      */
     if($messageError){
         header('location: formUser.php?error='.$messageChamps.
-                                        '&name='.$name.
+                                        '&name='.$nameuser.
                                         '&firstname='.$firstname.
                                         '&mdp='.$pass.
                                         '&verifpass='.$passbis.
@@ -82,6 +82,7 @@ if(!empty($_POST)){
     $emailOk = $userManager->verifMail($mail);
     
     
+    
     /**
      * on vérifie si l'email est correcte et qu'il n'existe pas dans la bdd
      */
@@ -89,6 +90,7 @@ if(!empty($_POST)){
 
         if($emailOk == true){
             $verifMail = true;
+            
         }else{
             $messageMail .= "L'email est déja pris";
             header('location: form.php?error='.$messageMail.'&pseudo='.$pseudo.'&mdp='.$pass.'&verifpass='.$passbis);
@@ -129,16 +131,16 @@ if(!empty($_POST)){
         $pass = password_hash(htmlentities($_POST['motDePasse']), PASSWORD_DEFAULT);
         $mail = htmlentities($_POST['mail']);
         $name = htmlentities($_POST['name']);
-        $firstname = htmlentities($_POST["firstname"]);
-        $age = htmlentities($_POST["age"]);
+        $firstname = htmlentities($_POST['firstname']);
+        $age = $_POST['age'];
         $photo = htmlentities($_POST['photo']);
         $citation = htmlentities($_POST['citation']);
         $language = htmlentities($_POST['language']);
         $project = htmlentities($_POST['project']);
 
+        var_dump($age);
 
-
-        $user -> setName($pseudo)
+        $user -> setName($name)
         -> setFirstname($firstname)
         -> setPassword($pass)
         -> setMail($mail)
@@ -153,9 +155,9 @@ if(!empty($_POST)){
         $userManager = new UserManager();
 
         $saveIsOk = $userManager-> save($user);
-
+        var_dump($saveIsOk);
         if($saveIsOk){
-            header('location: createUser.php');
+            header('location: ../index.php ');
 
         }
          else{

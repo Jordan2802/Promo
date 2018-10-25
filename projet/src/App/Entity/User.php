@@ -193,7 +193,7 @@ class User {
      */
     public function setAge($Age_user)
     {
-        $this->Mail_uAge_userser = $Age_user;
+        $this->Age_user = $Age_user;
         return $this;
     }
 

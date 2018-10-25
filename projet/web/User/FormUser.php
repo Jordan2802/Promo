@@ -20,11 +20,11 @@
 
     <form method="post" action="verifUser.php">
         <p><label for="">Nom :</label>
-        <input type="text" name="name" id="name" value="<?php if(isset($_GET['pseudo'])){echo $_GET['pseudo'];}?>">
+        <input type="text" name="name" id="name" value="<?php if(isset($_GET['name'])){echo $_GET['name'];}?>">
         </p>
 
         <p><label for="">Prénom :</label>
-        <input type="text" name="firstname" id="firstname" value="<?php if(isset($_GET['pseudo'])){echo $_GET['pseudo'];}?>">
+        <input type="text" name="firstname" id="firstname" value="<?php if(isset($_GET['firstname'])){echo $_GET['firstname'];}?>">
         </p>
 
         <p><label for="">Mot de passe :</label>
@@ -40,23 +40,23 @@
         </p>
 
         <p><label for="">Age :</label>
-        <input type="text" name="age" id="age" value="<?php if(isset($_GET['pseudo'])){echo $_GET['pseudo'];}?>">
+        <input type="text" name="age" id="age" value="<?php if(isset($_GET['age'])){echo $_GET['age'];}?>">
         </p>
 
         <p><label for="">Photo :</label>
-        <input type="text" name="photo" id="photo" value="<?php if(isset($_GET['pseudo'])){echo $_GET['pseudo'];}?>">
+        <input type="text" name="photo" id="photo" value="<?php if(isset($_GET['photo'])){echo $_GET['photo'];}?>">
         </p>
 
         <p><label for="">Citation :</label>
-        <input type="text" name="citation" id="citation" value="<?php if(isset($_GET['pseudo'])){echo $_GET['pseudo'];}?>">
+        <input type="text" name="citation" id="citation" value="<?php if(isset($_GET['citation'])){echo $_GET['citation'];}?>">
         </p>
 
         <p><label for="">Langage préféré :</label>
-        <input type="text" name="language" id="language" value="<?php if(isset($_GET['pseudo'])){echo $_GET['pseudo'];}?>">
+        <input type="text" name="language" id="language" value="<?php if(isset($_GET['language'])){echo $_GET['language'];}?>">
         </p>
 
         <p><label for="">Projet :</label>
-        <textarea name="project" id="project" value="<?php if(isset($_GET['pseudo'])){echo $_GET['pseudo'];}?>"></textarea>
+        <textarea name="project" id="project" value="<?php if(isset($_GET['project'])){echo $_GET['project'];}?>"></textarea>
         </p>
         
         <input type="submit" value="Créer un compte">

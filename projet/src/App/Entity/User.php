@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 namespace App\Entity;
 
 
@@ -290,9 +289,3 @@ class User {
 
      
 }
-=======
-<h1>test max</h1>
-
-
- ?>
->>>>>>> d946add93d15c04a5211e9301a3c42480b98dd31

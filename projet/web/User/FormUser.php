@@ -14,7 +14,7 @@
 
 <h1>Inscription</h1>
 
-<p><a href="../accueil.php">Retour au sommaire</a></p>
+<p><a href="../index.php">Retour au sommaire</a></p>
 <?php if(isset($_GET['error'])){echo $_GET['error'];}?>
 
 

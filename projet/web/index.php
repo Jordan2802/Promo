@@ -83,14 +83,26 @@ $users = $userManager->readAll();
 
         <?php else: ?>
             
-                <?php foreach($users as $user => $value): ?>
+				<?php foreach($users as $user => $value):
+				$nameUser = $value['name'];
+				$firstUser = $value['firstname'];
+				$lang = $value['language'];
+				$citation = $value['citation'];
+				$idUser = $value['ID_user'];
+				?>
 
 			<div class="col-md-3 mb-md-5 mb-sm-4">
 				<div class="member-box anim-bt t-bottom">
 			        <img class="img-fluid" src="img/t-member-08.jpg" alt="">
 			        <div class="overlay-content">
-			          <h3 class="text-white ml-3 my-0"><?= $value['name'] . "</br> ".$value['firstname'] ?></h3>
-			          <p class="text-white ml-3 mb-3"><?= $value['language'] ?></p>
+			          <h3 class="text-white ml-3 my-0"><?= $nameUser . "</br> ".$firstUser ?></h3>
+			          <p class="text-white ml-3 mb-3">Langage: <?= $lang ?></p>
+								<p class="text-white ml-3 mb-3">Citation: <?= $value['citation'] ?></p>
+								<form action="User/profilUser.php" method="post">
+									<input type="hidden" name="iduser" value="<?= $idUser ?>">
+									<button type="submit">Voir le profil</button>
+								</form>
+								
 			          <span class="socail-l ml-3 mb-3">
 			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
 						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>

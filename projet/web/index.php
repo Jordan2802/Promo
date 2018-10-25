@@ -1,4 +1,21 @@
-<?php session_start(); ?>
+<?php session_start();
+
+//on appelle les classes qui vont nous servir
+
+require_once '../src/App/Manager/UserManager.php';
+require_once '../src/App/Entity/User.php';
+
+//on indique l'espace de nom des classes utilisées
+
+use App\Entity\User;
+use App\Manager\UserManager;
+
+//recuperer les utilisateurs
+
+$userManager = new UserManager();
+$users = $userManager->readAll();
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -56,12 +73,24 @@
 				<h2>Ci-dessous les portfolios des apprenant(e)s de Simplon Charleville</h2>
 				<h6 class="text-underline-primary mb-5"></h6>
 			</div>
+
+			<?php if(empty($users)): ?>
+        <p>il n'y a aucun utilisateur à afficher</p>
+
+    <?php else:?>   
+        <?php if($users === false): ?>
+            <p>Une erreur est survenue</p>
+
+        <?php else: ?>
+            
+                <?php foreach($users as $user => $value): ?>
+
 			<div class="col-md-3 mb-md-5 mb-sm-4">
 				<div class="member-box anim-bt t-bottom">
 			        <img class="img-fluid" src="img/t-member-08.jpg" alt="">
 			        <div class="overlay-content">
-			          <h3 class="text-white ml-3 my-0">Jim Gorden</h3>
-			          <p class="text-white ml-3 mb-3">Developer</p>
+			          <h3 class="text-white ml-3 my-0"><?= $value['name'] . "</br> ".$value['firstname'] ?></h3>
+			          <p class="text-white ml-3 mb-3"><?= $value['language'] ?></p>
 			          <span class="socail-l ml-3 mb-3">
 			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
 						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>
@@ -70,104 +99,12 @@
 			        </div>
 			    </div>
 			</div>
-			<div class="col-md-3 mb-md-5 mb-sm-4">
-				<div class="member-box anim-bt t-bottom">
-			        <img class="img-fluid" src="img/t-member-07.jpg" alt="">
-			        <div class="overlay-content">
-			          <h3 class="text-white ml-3 my-0">Peyton Warren</h3>
-			          <p class="text-white ml-3 mb-3">UI/UX</p>
-			          <span class="socail-l ml-3 mb-3">
-			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
-						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>
-						<a href="#"><i class="fa fa-dribbble box-circle-solid"></i></a>
-			          </span>
-			        </div>
-			    </div>
-			</div>
-			<div class="col-md-3 mb-md-5 mb-sm-4">
-				<div class="member-box anim-bt t-bottom">
-			        <img class="img-fluid" src="img/t-member-06.jpg" alt="">
-			        <div class="overlay-content">
-			          <h3 class="text-white ml-3 my-0">Craig Thompson</h3>
-			          <p class="text-white ml-3 mb-3">Manager</p>
-			          <span class="socail-l ml-3 mb-3">
-			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
-						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>
-						<a href="#"><i class="fa fa-dribbble box-circle-solid"></i></a>
-			          </span>
-			        </div>
-			    </div>
-			</div>
-			<div class="col-md-3 mb-md-0 mb-sm-4">
-				<div class="member-box anim-bt t-bottom">
-			        <img class="img-fluid" src="img/t-member-05.jpg" alt="">
-			        <div class="overlay-content">
-			          <h3 class="text-white ml-3 my-0">Larry Bell</h3>
-			          <p class="text-white ml-3 mb-3">Developer</p>
-			          <span class="socail-l ml-3 mb-3">
-			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
-						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>
-						<a href="#"><i class="fa fa-dribbble box-circle-solid"></i></a>
-			          </span>
-			        </div>
-			    </div>
-			</div>
-			<div class="col-md-3 mb-md-0 mb-sm-4">
-				<div class="member-box anim-bt t-bottom">
-			        <img class="img-fluid" src="img/t-member-04.jpg" alt="">
-			        <div class="overlay-content">
-			          <h3 class="text-white ml-3 my-0">Wanda Stevens</h3>
-			          <p class="text-white ml-3 mb-3">Developer</p>
-			          <span class="socail-l ml-3 mb-3">
-			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
-						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>
-						<a href="#"><i class="fa fa-dribbble box-circle-solid"></i></a>
-			          </span>
-			        </div>
-			    </div>
-			</div>
-			<div class="col-md-3 mb-md-0 mb-sm-4">
-				<div class="member-box anim-bt t-bottom">
-			        <img class="img-fluid" src="img/t-member-03.jpg" alt="">
-			        <div class="overlay-content">
-			          <h3 class="text-white ml-3 my-0">Anthony Carter</h3>
-			          <p class="text-white ml-3 mb-3">UI/UX</p>
-			          <span class="socail-l ml-3 mb-3">
-			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
-						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>
-						<a href="#"><i class="fa fa-dribbble box-circle-solid"></i></a>
-			          </span>
-			        </div>
-			    </div>
-			</div>
-			<div class="col-md-3 mb-md-0 mb-sm-4">
-				<div class="member-box anim-bt t-bottom">
-			        <img class="img-fluid" src="img/t-member-02.jpg" alt="">
-			        <div class="overlay-content">
-			          <h3 class="text-white ml-3 my-0">Mattie Bishop</h3>
-			          <p class="text-white ml-3 mb-3">Manager</p>
-			          <span class="socail-l ml-3 mb-3">
-			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
-						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>
-						<a href="#"><i class="fa fa-dribbble box-circle-solid"></i></a>
-			          </span>
-			        </div>
-			    </div>
-			</div>
-			<div class="col-md-3 mb-md-0 mb-sm-4">
-				<div class="member-box anim-bt t-bottom">
-			        <img class="img-fluid" src="img/t-member-01.jpg" alt="">
-			        <div class="overlay-content">
-			          <h3 class="text-white ml-3 my-0">Herman Byrd</h3>
-			          <p class="text-white ml-3 mb-3">Developer</p>
-			          <span class="socail-l ml-3 mb-3">
-			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
-						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>
-						<a href="#"><i class="fa fa-dribbble box-circle-solid"></i></a>
-			          </span>
-			        </div>
-			    </div>
-			</div>
+								<?php endforeach; ?>
+						
+				<?php endif; ?>
+		<?php endif; ?>
+
+			
 		</div>
 	</div>
 </section>

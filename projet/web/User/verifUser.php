@@ -40,7 +40,7 @@ if(!empty($_POST)){
     $messageError = false;
     $verifMail = false;
     $verifPass = false;
-    $verifPseudo = false;
+    
     /**
      * on recupere les informations des champs du formulaire dans une boucle et on verifie qu'ils ne soient pas vide
      */
@@ -48,8 +48,7 @@ if(!empty($_POST)){
         if(empty($_POST[$name])){
 
             $messageChamps .= "le champ ".$name." est vide. <br>";
-            echo $messageChamps;
-
+    
             $messageError= true;           
 
         }
@@ -157,7 +156,7 @@ if(!empty($_POST)){
         $saveIsOk = $userManager-> save($user);
         var_dump($saveIsOk);
         if($saveIsOk){
-            header('location: ../index.php ');
+            header('location: ../index.php');
 
         }
          else{

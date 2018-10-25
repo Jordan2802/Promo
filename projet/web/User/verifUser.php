@@ -58,7 +58,7 @@ if(!empty($_POST)){
      * si le message d'erreur est true alors on redirige vers le formulaire de création.
      */
     if($messageError){
-        header('location: FormUser.php?error='.$messageChamps.
+        header('location: formUser.php?error='.$messageChamps.
                                         '&name='.$nameuser.
                                         '&firstname='.$firstname.
                                         '&mdp='.$pass.
@@ -92,7 +92,7 @@ if(!empty($_POST)){
             
         }else{
             $messageMail .= "L'email est déja pris";
-            header('location: FormUser.php?error='.$messageMail.'&pseudo='.$pseudo.'&mdp='.$pass.'&verifpass='.$passbis);
+            header('location: form.php?error='.$messageMail.'&pseudo='.$pseudo.'&mdp='.$pass.'&verifpass='.$passbis);
         }
         
 
@@ -105,14 +105,14 @@ if(!empty($_POST)){
         }else{
 
             $messagePass .= "les mots de passe ne correspondent pas. Vérifiez vos champs";
-            header('location: FormUser.php?error='.$messagePass);
+            header('location: form.php?error='.$messagePass);
         }
 
        
 
     }else{
         $messageMail .= "L'email n'est pas correct";
-            header('location: FormUser.php?error='.$messageMail);
+            header('location: form.php?error='.$messageMail);
 
     }
 

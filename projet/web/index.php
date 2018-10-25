@@ -33,7 +33,7 @@ $users = $userManager->readAll();
 <!-- Top navigation -->
 <nav class="navbar navbar-expand-md fixed-top top-nav">
 	<div class="container">
-		  <a class="navbar-brand" href="index.html"><strong>SIMPLON CHARLEVILLE</strong></a>
+		  <a class="navbar-brand" href="index.php"><strong>SIMPLON CHARLEVILLE</strong></a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
 		  </button>
@@ -41,15 +41,15 @@ $users = $userManager->readAll();
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav ml-auto">
 		      <li class="nav-item active">
-		        <a class="nav-link" href="team.html">ACCUEIL</a>
+		        <a class="nav-link" href="index.php">ACCUEIL</a>
 		      </li>
               
 		      
 		      <li class="nav-item">
-		        <a class="nav-link" href="contact.html">Connexion</a>
+		        <a class="nav-link" href="./User/connexion.php">Connexion</a>
 					</li>
 					<li class="nav-item">
-		        <a class="nav-link" href="contact.html">Créer un compte</a>
+		        <a class="nav-link" href="./User/FormUser.php">Créer un compte</a>
 		      </li>
 		    </ul>
 		  </div>	

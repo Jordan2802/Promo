@@ -1,171 +1,111 @@
-<?php
 
-//on appelle les classes qui vont nous servir
-
-require_once '../../src/App/Manager/UserManager.php';
-require_once '../../src/App/Entity/User.php';
-
-//on indique l'espace de nom des classes utilisées
-
-use App\Entity\User;
-use App\Manager\UserManager;
-
-
-/**
- * page de vérifiaction du formulaire de création d'utilisateur
- */
-
-
-$messageChamps="";
-$messageError = false;
-$messagePass = "";
-$messageMail = "";
-
-
-/**
- * on verifie que le $_POST n'est pas vide.
- */
-if(!empty($_POST)){
-
-    $nameuser = htmlentities($_POST["name"]);
-    $firstname = htmlentities($_POST["firstname"]);
-    $mail = $_POST['mail'];
-    $pass = $_POST['motDePasse'];
-    $passbis = $_POST['verifMotDePasse'];
-    $age = $_POST["age"];
-    $photo = $_POST['photo'];
-    $citation = $_POST['citation'];
-    $language = $_POST['language'];
-    $project = $_POST['project'];
-    $messageError = false;
-    $verifMail = false;
-    $verifPass = false;
-    $verifPseudo = false;
-    /**
-     * on recupere les informations des champs du formulaire dans une boucle et on verifie qu'ils ne soient pas vide
-     */
-    foreach ($_POST as $name => $value) {
-        if(empty($_POST[$name])){
-
-            $messageChamps .= "le champ ".$name." est vide. <br>";
-            echo $messageChamps;
-
-            $messageError= true;           
-
-        }
-    }
-
-    /**
-     * si le message d'erreur est true alors on redirige vers le formulaire de création.
-     */
-    if($messageError){
-        header('location: FormUser.php?error='.$messageChamps.
-                                        '&name='.$nameuser.
-                                        '&firstname='.$firstname.
-                                        '&mdp='.$pass.
-                                        '&verifpass='.$passbis.
-                                        '&mail='.$mail.
-                                        '&age='.$age.
-                                        '&photo='.$photo.
-                                        '&citation='.$citation.
-                                        '&language='.$language.
-                                        '&project='.$project);
-    }else{
-
-    
-
-    /**
-      * on fait appel au UserManager pour faire les vérification du mail
-     */
-    $userManager = new UserManager();
-
-    $emailOk = $userManager->verifMail($mail);
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simplon Charleville- Formulaire pour ajouter un utilisateur</title>
+</head>
+<!-- bootstrap Style CSS File -->
+<link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- Custom Style CSS File -->
+<link rel="stylesheet" type="text/css" href="../css/custom-style.css">
+<!-- Font-Awesome Style CSS File -->
+<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
     
     
-    
-    /**
-     * on vérifie si l'email est correcte et qu'il n'existe pas dans la bdd
-     */
-    if(preg_match('#^[\w.-]+@[\w.-]+.[a-z]{2,6}$#i', $mail)){
+<body>
 
-        if($emailOk == true){
-            $verifMail = true;
-            
-        }else{
-            $messageMail .= "L'email est déja pris";
-            header('location: FormUser.php?error='.$messageMail.'&pseudo='.$pseudo.'&mdp='.$pass.'&verifpass='.$passbis);
-        }
+<!-- Top navigation -->
+<nav class="navbar navbar-expand-md fixed-top top-nav">
+	<div class="container">
+		  <a class="navbar-brand" href="index.php"><strong>SIMPLON CHARLEVILLE</strong></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav ml-auto">
+		      
+              
+		      
+		      <li class="nav-item">
+		        <a class="nav-link" href="../index.php">ACCUEIL</a>
+					</li>
+					<li class="nav-item">
+		        <a class="nav-link" href="connexion.php">Connexion</a>
+                <li class="nav-item active">
+		        <a class="nav-link" href="indexFormUser.php">Créer un compte</a>
+		      </li>
+		      </li>
+		    </ul>
+		  </div>	
+	</div>
+</nav>
+
+<!-- Intro Seven -->
+<section class="intro intro-small intro-bg bg-overlay-light parallax">
+	<div class="caption-container p-5">
+		<div class="intro-caption text-center mt-5">
+			<h1 class="display-4 text-white mb-2">1ere PROMO</h1>
+		</div>
+	</div>
+</section>
+
+
+<body>
+
+<h1>Inscription</h1>
+
+<p><a href="../index.php">Retour au sommaire</a></p>
+<?php if(isset($_GET['error'])){echo $_GET['error'];}?>
+
+
+    <form method="post" action="verifUser.php">
+        <p><label for="">Nom :</label>
+        <input type="text" name="name" id="name" value="<?php if(isset($_GET['name'])){echo $_GET['name'];}?>">
+        </p>
+
+        <p><label for="">Prénom :</label>
+        <input type="text" name="firstname" id="firstname" value="<?php if(isset($_GET['firstname'])){echo $_GET['firstname'];}?>">
+        </p>
+
+        <p><label for="">Mot de passe :</label>
+        <input type="password" name="motDePasse" id="password" value="<?php if(isset($_GET['mdp'])){echo $_GET['mdp'];}?>"> 
+        </p>
+
+        <p><label for="">Verification du mot de passe :</label>
+        <input type="password" name="verifMotDePasse" id="passwordbis" value="<?php if(isset($_GET['verifpass'])){echo $_GET['verifpass'];}?>">  
+        </p>
+
+        <p><label for="">Email :</label>
+        <input type="email" name="mail" id="mail" value="<?php if(isset($_GET['mail'])){echo $_GET['mail'];}?>">
+        </p>
+
+        <p><label for="">Age :</label>
+        <input type="text" name="age" id="age" value="<?php if(isset($_GET['age'])){echo $_GET['age'];}?>">
+        </p>
+
+        <p><label for="">Photo :</label>
+        <input type="text" name="photo" id="photo" value="<?php if(isset($_GET['photo'])){echo $_GET['photo'];}?>">
+        </p>
+
+        <p><label for="">Citation :</label>
+        <input type="text" name="citation" id="citation" value="<?php if(isset($_GET['citation'])){echo $_GET['citation'];}?>">
+        </p>
+
+        <p><label for="">Langage préféré :</label>
+        <input type="text" name="language" id="language" value="<?php if(isset($_GET['language'])){echo $_GET['language'];}?>">
+        </p>
+
+        <p><label for="">Projet :</label>
+        <textarea name="project" id="project" value="<?php if(isset($_GET['project'])){echo $_GET['project'];}?>"></textarea>
+        </p>
         
-
-        /**
-         * on vérifie que les mots de passe correspondent.
-         */
-        if($pass===$passbis){
-
-            $verifPass = true;
-        }else{
-
-            $messagePass .= "les mots de passe ne correspondent pas. Vérifiez vos champs";
-            header('location: FormUser.php?error='.$messagePass);
-        }
-
-       
-
-    }else{
-        $messageMail .= "L'email n'est pas correct";
-            header('location: FormUser.php?error='.$messageMail);
-
-    }
-
-    }
-
-
-    /**
-     * si le mail et le mot de passe sont correcte on traite les données
-     */
-    if($verifMail && $verifPass){
-        //création d'un nouveau contact à partir des données du formulaire
-
-        $user = new User();
-
-        $pass = password_hash(htmlentities($_POST['motDePasse']), PASSWORD_DEFAULT);
-        $mail = htmlentities($_POST['mail']);
-        $name = htmlentities($_POST['name']);
-        $firstname = htmlentities($_POST['firstname']);
-        $age = $_POST['age'];
-        $photo = htmlentities($_POST['photo']);
-        $citation = htmlentities($_POST['citation']);
-        $language = htmlentities($_POST['language']);
-        $project = htmlentities($_POST['project']);
-
-        var_dump($age);
-
-        $user -> setName($name)
-        -> setFirstname($firstname)
-        -> setPassword($pass)
-        -> setMail($mail)
-        -> setAge($age)
-        -> setCitation($citation)
-        -> setPhoto($photo)
-        -> setLanguage($language)
-        -> setProject($project);
-
-        //insertion en bdd via le manager
-
-        $userManager = new UserManager();
-
-        $saveIsOk = $userManager-> save($user);
-        var_dump($saveIsOk);
-        if($saveIsOk){
-            header('location: ../index.php ');
-
-        }
-         else{
-            $message = 'l\'utilisateur n\'a pas été ajouté';
-            echo($message);
-            }
-        }  
-
-}
-   
-?>
+        <input type="submit" value="Créer un compte">
+    </form>
+    <script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/core.js"></script>
+</body>
+</html>

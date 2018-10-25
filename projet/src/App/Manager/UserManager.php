@@ -54,13 +54,20 @@ class UserManager{
      */
     private function create(User &$user){
 
-        $this->pdoStatement = $this->pdo->prepare('INSERT INTO user VALUES (NULL, :Pseudo_user, :Password_user, :Mail_user) ');
+        $this->pdoStatement = $this->pdo->prepare('INSERT INTO userpromo VALUES (NULL, :name, :firstname,:Mail, :Password, :age, :citation, :language, :project, :photo ) ');
 
         //liaison des parametres
 
-        $this->pdoStatement->bindValue(':Pseudo_user', $user->getPseudo(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':Password_user', $user->getPassword(), PDO::PARAM_STR);
-        $this->pdoStatement->bindValue(':Mail_user', $user->getMail(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':name', $user->getName(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':firstname', $user->getFirstname(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':Password', $user->getPassword(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':Mail', $user->getMail(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':age', $user->getAge(), PDO::PARAM_INT);
+        $this->pdoStatement->bindValue(':citation', $user->getCitation(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':language', $user->getLanguage(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':project', $user->getProject(), PDO::PARAM_STR);
+        $this->pdoStatement->bindValue(':photo', $user->getPhoto(), PDO::PARAM_STR);
+        
 
         //executer la requete
 
@@ -89,7 +96,7 @@ class UserManager{
      */
     public function read($id){
 
-      $this->pdoStatement =  $this->pdo->prepare('SELECT * FROM user WHERE ID_user= :id ');
+      $this->pdoStatement =  $this->pdo->prepare('SELECT * FROM userpromo WHERE ID_user= :id ');
 
       //liaison des parametres
 
@@ -128,7 +135,7 @@ class UserManager{
     public function readAll(){
 
 
-        $this->pdoStatement = $this->pdo->query('SELECT * FROM user ORDER BY Pseudo_user, Mail_user');
+        $this->pdoStatement = $this->pdo->query('SELECT * FROM userpromo ORDER BY name, mail');
 
         //construction d'un tableau d'objet de type User
 
@@ -144,13 +151,19 @@ class UserManager{
      */
     private function update(User $user){
 
-        $pdoStatement = $this->pdo->prepare('UPDATE user SET Pseudo_user=:Pseudo_user, Password_user=:Password_user, mail_user=:Mail_user WHERE ID_user=:id LIMIT 1');
+        $pdoStatement = $this->pdo->prepare('UPDATE userpromo SET name=:name, firstname = :firstname Password=:Password, mail=:Mail, age=:age, citation=:citation, language=:language, project=:project, photo=:photo WHERE ID_user=:id LIMIT 1');
 
         //liaison des parametres
 
-        $pdoStatement->bindValue(':Pseudo_user', $user->getPseudo(), PDO::PARAM_STR);
-        $pdoStatement->bindValue(':Password_user', $user->getPassword(), PDO::PARAM_STR);
-        $pdoStatement->bindValue(':Mail_user', $user->getMail(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':name', $user->getName(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':firstname', $user->getFirstname(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':Password', $user->getPassword(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':Mail', $user->getMail(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':age', $user->getAge(), PDO::PARAM_INT);
+        $pdoStatement->bindValue(':citation', $user->getCitation(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':language', $user->getLanguage(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':project', $user->getProject(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':photo', $user->getPhoto(), PDO::PARAM_STR);
         $pdoStatement->bindValue(':id', $user->getId(), PDO::PARAM_INT);
 
         //execution de la requete
@@ -167,7 +180,7 @@ class UserManager{
      */
     public function delete(User $user){
         
-        $pdoStatement = $this->pdo->prepare('DELETE  FROM user WHERE ID_user = :id LIMIT 1');
+        $pdoStatement = $this->pdo->prepare('DELETE  FROM userpromo WHERE ID_user = :id LIMIT 1');
 
         $pdoStatement->bindValue(':id', $user->getId(), PDO::PARAM_INT);
 
@@ -205,8 +218,8 @@ class UserManager{
  */
     public function verifMail($mail){
 
-        $pdoStatement = $this->pdo->prepare('SELECT COUNT(*) FROM user WHERE Mail_user = :mail');
-        $pdoStatement->execute(array(':mail'=>$mail));
+        $pdoStatement = $this->pdo->prepare('SELECT COUNT(*) FROM userpromo WHERE mail = :Mail');
+        $pdoStatement->execute(array(':Mail'=>$mail));
         $mailExist = $pdoStatement->fetch()[0];
         if ($mailExist == 0) {
             return true;
@@ -217,25 +230,6 @@ class UserManager{
     }
 
 
-    /**
-     * methode pour vérifier si le pseudo existe dans la base de donnée
-     *
-     * @param string $pseudo
-     * @return bool
-     */
-    public function verifPseudo($pseudo){
-
-        $pdoStatement = $this->pdo->prepare('SELECT COUNT(*) FROM user WHERE Pseudo_user = :pseudo');
-        $pdoStatement->execute(array(':pseudo'=>$pseudo));
-        $pseudoExist = $pdoStatement->fetch()[0];
-        if ($pseudoExist == 0) {
-            return true;
-        } else {
-           return false;
-        }
-
-    }
-
 
     /**
      * méthode qui vérifie que l'utilisateur qui se connecte existe bien dans la base de donnée.
@@ -243,18 +237,17 @@ class UserManager{
      *
      * @return void
      */
-    public function login($pseudo){
+    public function login($mail){
 
-        if(!empty($pseudo)){
-            $pdoStatement = $this->pdo->prepare('SELECT * FROM user WHERE Pseudo_user = :pseudo ');
-            $pdoStatement->execute(array(':pseudo'=>$pseudo
-                                                                   
+        if(!empty($mail)){
+            $pdoStatement = $this->pdo->prepare('SELECT * FROM userpromo WHERE mail = :mail ');
+            $pdoStatement->execute(array(':mail'=>$mail                                                  
                 )
             );
             $count = $pdoStatement->rowCount();
             if($count>0){
                 
-                $_SESSION['pseudo'] = $pseudo;
+                $_SESSION['mail'] = $mail;
                
                 return $pdoStatement->fetch();
             }else{

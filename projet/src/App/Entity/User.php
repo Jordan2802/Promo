@@ -114,7 +114,7 @@ class User {
      *
      * @return string
      */
-    public function getPrenom()
+    public function getFirstname()
     {
         return $this->Firstname_user;
     }
@@ -125,7 +125,7 @@ class User {
          * @param string $Firstname_user
          * @return User
          */
-    public function setPrenom($Firstname_user)
+    public function setFirstname($Firstname_user)
     {
         $this->Firstname_user = $Firstname_user;
         return $this;

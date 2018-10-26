@@ -45,12 +45,27 @@ $users = $userManager->readAll();
 		      </li>
 
 
+		      <?php
+		      if (isset($_SESSION['mail'])) { 
+					?>
+					<li class="nav-item">
+		        <a class="nav-link" href="./User/logout.php">Déonnexion</a>
+					</li>
+					<li class="nav-item">
+		        <a class="nav-link" href="#">Mon compte</a>
+						
+		      </li>
+					<?php }
+					else { ?>
 		      <li class="nav-item">
 		        <a class="nav-link" href="./User/connexion.php">Connexion</a>
 					</li>
+					
 					<li class="nav-item">
 		        <a class="nav-link" href="./User/FormUser.php">Créer un compte</a>
+						
 		      </li>
+					<?php } ?>
 		    </ul>
 		  </div>
 	</div>

@@ -87,7 +87,7 @@
         </p>
 
         <p><label for="">Photo :</label>
-        <input type="text" name="photo" id="photo" value="http://chaire-eti.org/wp-content/uploads/2018/01/avatar-homme.png"><input type="file" name="upload" id="uploadPc" class="inputFilePc"
+        <input type="text" name="photo" id="photo" value="http://chaire-eti.org/wp-content/uploads/2018/01/avatar-homme.png"><input type="file" name="upload" id="uploadPc" class="inputFilePc">
         </p>
 
         <p><label for="">Citation :</label>

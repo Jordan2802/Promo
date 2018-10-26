@@ -12,8 +12,8 @@
 <!-- Font-Awesome Style CSS File -->
 <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    
+
+
 <body>
 
 <!-- Top navigation -->
@@ -26,9 +26,9 @@
 
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav ml-auto">
-		      
-              
-		      
+
+
+
 		      <li class="nav-item">
 		        <a class="nav-link" href="../index.php">ACCUEIL</a>
 					</li>
@@ -39,7 +39,7 @@
 		      </li>
 		      </li>
 		    </ul>
-		  </div>	
+		  </div>
 	</div>
 </nav>
 
@@ -71,11 +71,11 @@
         </p>
 
         <p><label for="">Mot de passe :</label>
-        <input type="password" name="motDePasse" id="password" value="<?php if(isset($_GET['mdp'])){echo $_GET['mdp'];}?>"> 
+        <input type="password" name="motDePasse" id="password" value="<?php if(isset($_GET['mdp'])){echo $_GET['mdp'];}?>">
         </p>
 
         <p><label for="">Verification du mot de passe :</label>
-        <input type="password" name="verifMotDePasse" id="passwordbis" value="<?php if(isset($_GET['verifpass'])){echo $_GET['verifpass'];}?>">  
+        <input type="password" name="verifMotDePasse" id="passwordbis" value="<?php if(isset($_GET['verifpass'])){echo $_GET['verifpass'];}?>">
         </p>
 
         <p><label for="">Email :</label>
@@ -87,7 +87,7 @@
         </p>
 
         <p><label for="">Photo :</label>
-        <input type="text" name="photo" id="photo" value="<?php if(isset($_GET['photo'])){echo $_GET['photo'];}?>">
+        <input type="text" name="photo" id="photo" value="<?php if(isset($_GET['photo'])){echo $_GET['photo'];}?>"><input type="file" name="upload" id="uploadPc" class="inputFilePc"
         </p>
 
         <p><label for="">Citation :</label>
@@ -101,7 +101,7 @@
         <p><label for="">Projet :</label>
         <textarea name="project" id="project" value="<?php if(isset($_GET['project'])){echo $_GET['project'];}?>"></textarea>
         </p>
-        
+
         <input type="submit" value="Créer un compte">
     </form>
     <script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>

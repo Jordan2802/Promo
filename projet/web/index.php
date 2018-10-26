@@ -49,7 +49,7 @@ $users = $userManager->readAll();
 		      if (isset($_SESSION['mail'])) { 
 					?>
 					<li class="nav-item">
-		        <a class="nav-link" href="./User/logout.php">Déonnexion</a>
+		        <a class="nav-link" href="./User/logout.php">Déconnexion</a>
 					</li>
 					<li class="nav-item">
 		        <a class="nav-link" href="#">Mon compte</a>

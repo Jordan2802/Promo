@@ -174,18 +174,18 @@ $users = $userManager->readAll();
 		<div class="row">
 			<div class="col-md-3">
 				<div class="about-box text-white">
-					<h5 class="mb-3">Quick Links</h5>
+					<h5 class="mb-3">Liens rapides</h5>
 					<ul class="list-unstyled">
-						<li><a href="#" class="text-white">Home</a></li>
+						<li><a href="#" class="text-white">Accueil</a></li>
 						<li><a href="#" class="text-white">About</a></li>
 						<li><a href="#" class="text-white">Services</a></li>
-						<li><a href="#" class="text-white">Contact Us</a></li>
+						<li><a href="#" class="text-white">Contactez-nous</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="about-box text-white">
-					<h5 class="mb-3">Legal Links</h5>
+					<h5 class="mb-3">Liens legaux</h5>
 					<ul class="list-unstyled">
 						<li><a href="#" class="text-white">Politique Privée</a></li>
 						<li><a href="#" class="text-white">Thermes et condition</a></li>

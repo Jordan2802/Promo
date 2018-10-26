@@ -52,22 +52,22 @@
       <div>
 
         <p>
-       <input type="text" name="name" id="name" placeholder="Nom" size="40" value="<?php if(isset($_GET['name'])){echo $_GET['name'];}?>"> 
+       <input type="text" name="name" id="name" placeholder="Nom" size="40" value="<?php if(isset($_GET['name'])){echo $_GET['name'];}?>">
 
        </p>
-        
+
         <p>
         <input type="text" name="firstname" id="firstname" placeholder="Prénom" size="40" value="<?php if(isset($_GET['firstname'])){echo $_GET['firstname'];}?>">
         </p>
-       
-        
+
+
 
         <p>
-        <input type="password" name="motDePasse" id="password" placeholder="Mot de passe" size="40" value="<?php if(isset($_GET['mdp'])){echo $_GET['mdp'];}?>"> 
+        <input type="password" name="motDePasse" id="password" placeholder="Mot de passe" size="40" value="<?php if(isset($_GET['mdp'])){echo $_GET['mdp'];}?>">
         </p>
 
         <p>
-        <input type="password" name="verifMotDePasse" id="passwordbis" placeholder="Confirmez le mot de passe" size="40" value="<?php if(isset($_GET['verifpass'])){echo $_GET['verifpass'];}?>">  
+        <input type="password" name="verifMotDePasse" id="passwordbis" placeholder="Confirmez le mot de passe" size="40" value="<?php if(isset($_GET['verifpass'])){echo $_GET['verifpass'];}?>">
         </p>
 
         <p>
@@ -79,7 +79,7 @@
         </p>
 
         <p>
-        <input type="text" name="photo" id="photo" placeholder="Photo" size="40" value="<?php if(isset($_GET['photo'])){echo $_GET['photo'];}?>">
+        <input type="text" name="photo" id="photo" placeholder="Photo" size="40" value="http://chaire-eti.org/wp-content/uploads/2018/01/avatar-homme.png"><input type="file" name="upload" id="uploadPc" class="inputFilePc" />
         </p>
 
         <p>
@@ -93,8 +93,8 @@
         <p>
         <textarea name="project" id="project" placeholder="Projet" rows="4" cols="40" value="<?php if(isset($_GET['project'])){echo $_GET['project'];}?>"></textarea>
         </p>
-      
-        
+
+
         <input type="submit" value="Créer un compte">
     </form>
 		</div>
@@ -108,7 +108,7 @@
 <?php if(isset($_GET['error'])){echo $_GET['error'];}?>
 
 
-    
+
     <script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/core.js"></script>

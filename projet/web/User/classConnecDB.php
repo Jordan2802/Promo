@@ -2,11 +2,8 @@
 Class Connection {
   /// Variables de connexion
 
-
   private  $server = 'mysql:host=db759087613.hosting-data.io; dbname=db759087613';
-
   private  $user = "dbo759087613";
-
   private  $pass = "azerty5488";
   /// affichage des erreurs
   // les données sont recus sont sous forme de  array (fetch_assoc), possibilité de le changer en objet

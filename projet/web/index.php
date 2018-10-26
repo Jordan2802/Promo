@@ -46,24 +46,24 @@ $users = $userManager->readAll();
 
 
 		      <?php
-		      if (isset($_SESSION['mail'])) { 
+		      if (isset($_SESSION['mail'])) {
 					?>
 					<li class="nav-item">
 		        <a class="nav-link" href="./User/logout.php">Déconnexion</a>
 					</li>
 					<li class="nav-item">
 		        <a class="nav-link" href="#">Mon compte</a>
-						
+
 		      </li>
 					<?php }
 					else { ?>
 		      <li class="nav-item">
 		        <a class="nav-link" href="./User/connexion.php">Connexion</a>
 					</li>
-					
+
 					<li class="nav-item">
 		        <a class="nav-link" href="./User/FormUser.php">Créer un compte</a>
-						
+
 		      </li>
 					<?php } ?>
 		    </ul>
@@ -174,24 +174,21 @@ $users = $userManager->readAll();
 		<div class="row">
 			<div class="col-md-3">
 				<div class="about-box text-white">
-					<h5 class="mb-3">Quick Links</h5>
+					<h5 class="mb-3">Liens rapides</h5>
 					<ul class="list-unstyled">
-						<li><a href="#" class="text-white">Home</a></li>
+						<li><a href="#" class="text-white">Accueil</a></li>
 						<li><a href="#" class="text-white">About</a></li>
-						<li><a href="#" class="text-white">Products</a></li>
 						<li><a href="#" class="text-white">Services</a></li>
-						<li><a href="#" class="text-white">Contact Us</a></li>
+						<li><a href="#" class="text-white">Contactez-nous</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="about-box text-white">
-					<h5 class="mb-3">Legal Links</h5>
+					<h5 class="mb-3">Liens legaux</h5>
 					<ul class="list-unstyled">
-						<li><a href="#" class="text-white">Privacy Policy</a></li>
-						<li><a href="#" class="text-white">Terms and Conditions</a></li>
-						<li><a href="#" class="text-white">Custom Link 1</a></li>
-						<li><a href="#" class="text-white">Custom Link 2</a></li>
+						<li><a href="#" class="text-white">Politique Privée</a></li>
+						<li><a href="#" class="text-white">Thermes et condition</a></li>
 					</ul>
 				</div>
 			</div>
@@ -201,13 +198,6 @@ $users = $userManager->readAll();
 						<div class="about-box text-white">
 							<h5 class="mb-3">About Company</h5>
 							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<h5 class="text-white">Subscribe Now</h5>
-						<div class="input-group">
-						  <input class="form-control" aria-label="Amount (to the nearest dollar)" type="text">
-						  <span class="input-group-addon">Subscribe</span>
 						</div>
 					</div>
 					<div class="col-md-6">

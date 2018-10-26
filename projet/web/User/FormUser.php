@@ -79,8 +79,10 @@
         </p>
 
         <p>
-        <input type="text" name="photo" id="photo" placeholder="Photo" size="40" value="http://chaire-eti.org/wp-content/uploads/2018/01/avatar-homme.png"><input type="file" name="upload" id="uploadPc" class="inputFilePc" />
+        <input type="text" name="photo" id="photo" placeholder="Photo" size="40" value="http://chaire-eti.org/wp-content/uploads/2018/01/avatar-homme.png">
         </p>
+				<p><input type="file" name="upload" id="uploadPc" class="inputFilePc" /></p>
+				
 
         <p>
         <input type="text" name="citation" id="citation" placeholder="Citation" size="40" value="<?php if(isset($_GET['citation'])){echo $_GET['citation'];}?>">
@@ -93,7 +95,6 @@
         <p>
         <textarea name="project" id="project" placeholder="Projet" rows="4" cols="40" value="<?php if(isset($_GET['project'])){echo $_GET['project'];}?>"></textarea>
         </p>
-
 
         <input type="submit" value="Créer un compte">
     </form>

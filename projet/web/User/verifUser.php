@@ -4,12 +4,12 @@
 
 require_once '../../src/App/Manager/UserManager.php';
 require_once '../../src/App/Entity/User.php';
+require("../../src/App/Manager/imgClass.php");
 
 //on indique l'espace de nom des classes utilisées
 
 use App\Entity\User;
 use App\Manager\UserManager;
-
 
 /**
  * page de vérifiaction du formulaire de création d'utilisateur
@@ -22,17 +22,18 @@ $messagePass = "";
 $messageMail = "";
 
 
+
+
 /**
  * on verifie que le $_POST n'est pas vide.
  */
-if(!empty($_POST)){
-
+if (!empty($_POST)) {
     $nameuser = htmlentities($_POST["name"]);
     $firstname = htmlentities($_POST["firstname"]);
     $mail = $_POST['mail'];
     $pass = $_POST['motDePasse'];
     $passbis = $_POST['verifMotDePasse'];
-    $age = $_POST["age"];
+    $age = $_POST['age'];
     $citation = $_POST['citation'];
     $language = $_POST['language'];
     $project = $_POST['project'];
@@ -44,19 +45,17 @@ if(!empty($_POST)){
      * on recupere les informations des champs du formulaire dans une boucle et on verifie qu'ils ne soient pas vide
      */
     foreach ($_POST as $name => $value) {
-        if(empty($_POST[$name])){
-
+        if (empty($_POST[$name])) {
             $messageChamps .= "le champ ".$name." est vide. <br>";
 
             $messageError= true;
-
         }
     }
 
     /**
      * si le message d'erreur est true alors on redirige vers le formulaire de création.
      */
-    if($messageError){
+    if ($messageError) {
         header('location: formUser.php?error='.$messageChamps.
                                         '&name='.$nameuser.
                                         '&firstname='.$firstname.
@@ -67,61 +66,62 @@ if(!empty($_POST)){
                                         '&citation='.$citation.
                                         '&language='.$language.
                                         '&project='.$project);
-    }else{
+    } else {
 
 
 
     /**
       * on fait appel au UserManager pour faire les vérification du mail
      */
-    $userManager = new UserManager();
+        $userManager = new UserManager();
 
-    $emailOk = $userManager->verifMail($mail);
+        $emailOk = $userManager->verifMail($mail);
 
-
-
-    /**
-     * on vérifie si l'email est correcte et qu'il n'existe pas dans la bdd
-     */
-    if(preg_match('#^[\w.-]+@[\w.-]+.[a-z]{2,6}$#i', $mail)){
-
-        if($emailOk == true){
-            $verifMail = true;
-
-        }else{
-            $messageMail .= "L'email est déja pris";
-            header('location: form.php?error='.$messageMail.'&pseudo='.$pseudo.'&mdp='.$pass.'&verifpass='.$passbis);
-        }
 
 
         /**
-         * on vérifie que les mots de passe correspondent.
+         * on vérifie si l'email est correcte et qu'il n'existe pas dans la bdd
          */
-        if($pass===$passbis){
-
-            $verifPass = true;
-        }else{
-
-            $messagePass .= "les mots de passe ne correspondent pas. Vérifiez vos champs";
-            header('location: form.php?error='.$messagePass);
-        }
-
+        if (preg_match('#^[\w.-]+@[\w.-]+.[a-z]{2,6}$#i', $mail)) {
+            if ($emailOk == true) {
+                $verifMail = true;
+            } else {
+                $messageMail .= "L'email est déja pris";
+                header('location: form.php?error='.$messageMail.'&pseudo='.$pseudo.'&mdp='.$pass.'&verifpass='.$passbis);
+            }
 
 
-    }else{
-        $messageMail .= "L'email n'est pas correct";
+            /**
+             * on vérifie que les mots de passe correspondent.
+             */
+            if ($pass===$passbis) {
+                $verifPass = true;
+            } else {
+                $messagePass .= "les mots de passe ne correspondent pas. Vérifiez vos champs";
+                header('location: form.php?error='.$messagePass);
+            }
+        } else {
+            $messageMail .= "L'email n'est pas correct";
             header('location: form.php?error='.$messageMail);
-
-    }
-
+        }
     }
 
 
     /**
      * si le mail et le mot de passe sont correcte on traite les données
      */
-    if($verifMail && $verifPass){
+    if ($verifMail && $verifPass) {
         //création d'un nouveau contact à partir des données du formulaire
+
+        // creation miniature des profiles
+        $img = $_FILES['upload'];
+
+        move_uploaded_file($img['tmp_name'], "imgbd/".$img['name']);
+
+        Img::creerMin("imgbd/".$img['name'], "imgbd/min", $img['name'], 255, 255);
+
+
+
 
         $user = new User();
 
@@ -130,12 +130,12 @@ if(!empty($_POST)){
         $name = htmlentities($_POST['name']);
         $firstname = htmlentities($_POST['firstname']);
         $age = $_POST['age'];
-        $photo = htmlentities($_POST['photo']);
+        $photo = htmlentities($_POST['upload']);
         $citation = htmlentities($_POST['citation']);
         $language = htmlentities($_POST['language']);
         $project = htmlentities($_POST['project']);
 
-        var_dump($age);
+
 
         $user -> setName($name)
         -> setFirstname($firstname)
@@ -153,16 +153,11 @@ if(!empty($_POST)){
 
         $saveIsOk = $userManager-> save($user);
         var_dump($saveIsOk);
-        if($saveIsOk){
+        if ($saveIsOk) {
             header('location: ../index.php');
-
-        }
-         else{
+        } else {
             $message = 'l\'utilisateur n\'a pas été ajouté';
             echo($message);
-            }
         }
-
+    }
 }
-
-?>

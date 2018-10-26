@@ -44,7 +44,7 @@
 </nav>
 
 <!-- Intro Seven -->
-<section class="intro intro-small intro-bg bg-overlay-light parallax">
+<section class="intro intro-small2 intro-bg bg-overlay-light parallax">
 	<div class="caption-container p-5">
 		<div class="intro-caption text-center mt-5">
 			<h1 class="display-4 text-white mb-2">INSCRIPTION</h1>

@@ -98,7 +98,6 @@ $users = $userManager->readAll();
 			        <div class="overlay-content">
 			          <h3 class="text-white ml-3 my-0"><?= $nameUser . "</br> ".$firstUser ?></h3>
 			          <p class="text-white ml-3 mb-3"><?= $lang ?></p>
-								<p class="text-white ml-3 mb-3"> <cite><?= $value['citation'] ?></cite></p>
 								<form action="User/profilUser.php" method="post">
 									<input type="hidden" name="iduser" value="<?= $idUser ?>">
 									<button type="submit">Voir le profil</button>

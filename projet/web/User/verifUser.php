@@ -33,14 +33,13 @@ if(!empty($_POST)){
     $pass = $_POST['motDePasse'];
     $passbis = $_POST['verifMotDePasse'];
     $age = $_POST["age"];
-    $photo = $_POST['photo'];
     $citation = $_POST['citation'];
     $language = $_POST['language'];
     $project = $_POST['project'];
     $messageError = false;
     $verifMail = false;
     $verifPass = false;
-    
+
     /**
      * on recupere les informations des champs du formulaire dans une boucle et on verifie qu'ils ne soient pas vide
      */
@@ -48,8 +47,8 @@ if(!empty($_POST)){
         if(empty($_POST[$name])){
 
             $messageChamps .= "le champ ".$name." est vide. <br>";
-    
-            $messageError= true;           
+
+            $messageError= true;
 
         }
     }
@@ -65,13 +64,12 @@ if(!empty($_POST)){
                                         '&verifpass='.$passbis.
                                         '&mail='.$mail.
                                         '&age='.$age.
-                                        '&photo='.$photo.
                                         '&citation='.$citation.
                                         '&language='.$language.
                                         '&project='.$project);
     }else{
 
-    
+
 
     /**
       * on fait appel au UserManager pour faire les vérification du mail
@@ -79,9 +77,9 @@ if(!empty($_POST)){
     $userManager = new UserManager();
 
     $emailOk = $userManager->verifMail($mail);
-    
-    
-    
+
+
+
     /**
      * on vérifie si l'email est correcte et qu'il n'existe pas dans la bdd
      */
@@ -89,12 +87,12 @@ if(!empty($_POST)){
 
         if($emailOk == true){
             $verifMail = true;
-            
+
         }else{
             $messageMail .= "L'email est déja pris";
             header('location: form.php?error='.$messageMail.'&pseudo='.$pseudo.'&mdp='.$pass.'&verifpass='.$passbis);
         }
-        
+
 
         /**
          * on vérifie que les mots de passe correspondent.
@@ -108,7 +106,7 @@ if(!empty($_POST)){
             header('location: form.php?error='.$messagePass);
         }
 
-       
+
 
     }else{
         $messageMail .= "L'email n'est pas correct";
@@ -163,8 +161,8 @@ if(!empty($_POST)){
             $message = 'l\'utilisateur n\'a pas été ajouté';
             echo($message);
             }
-        }  
+        }
 
 }
-   
+
 ?>

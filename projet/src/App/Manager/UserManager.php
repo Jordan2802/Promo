@@ -113,7 +113,7 @@ class UserManager{
 
       if($executeIsOk){
 
-        $user = $this->pdoStatement-> fetchObject('App\Entity\User');
+        $user = $this->pdoStatement-> fetch();
 
         if($user===false){
             return null;

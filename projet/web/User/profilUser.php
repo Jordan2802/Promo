@@ -15,9 +15,9 @@ use App\Manager\UserManager;
 
 $userManager = new UserManager();
 $users = $userManager->read($_POST['iduser']);
-var_dump("<pre>");
-var_dump($users);
-var_dump("</pre>");
+
+
+
 ?>
 
 
@@ -32,7 +32,11 @@ var_dump("</pre>");
     <title>Profil</title>
 </head>
 <body>
-    
+<?php echo $users["name"];?><br>
+<?php echo $users["firstname"];?><br>
+<?php echo $users["photo"];?><br>
+<?php echo $users["citation"];?><br>
+<?php echo $users["project"];?>
 
 
 

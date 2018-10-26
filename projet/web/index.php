@@ -109,7 +109,7 @@ $users = $userManager->readAll();
 
 			<div class="col-md-3 mb-md-5 mb-sm-4">
 				<div class="member-box anim-bt t-bottom">
-			        <img class="img-fluid" style="width:255px;height:255px;" src="<?= $photo ?>" alt="">
+			        <img class="img-fluid" style="width:255px;height:255px;" src="../web/img/aaa.jpg" alt="">
 			        <div class="overlay-content">
 			          <h3 class="text-white ml-3 my-0"><?= $nameUser . "</br> ".$firstUser ?></h3>
 			          <p class="text-white ml-3 mb-3"><?= $lang ?></p>

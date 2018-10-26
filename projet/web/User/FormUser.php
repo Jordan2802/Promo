@@ -47,7 +47,56 @@
 <section class="intro intro-small intro-bg bg-overlay-light parallax">
 	<div class="caption-container p-5">
 		<div class="intro-caption text-center mt-5">
-			<h1 class="display-4 text-white mb-2">1ere PROMO</h1>
+			<h1 class="display-4 text-white mb-2">INSCRIPTION</h1>
+      <form method="post" action="verifUser.php">
+      <div>
+
+        <p>
+       <input type="text" name="name" id="name" placeholder="Nom" size="40" value="<?php if(isset($_GET['name'])){echo $_GET['name'];}?>"> 
+
+       </p>
+        
+        <p>
+        <input type="text" name="firstname" id="firstname" placeholder="Prénom" size="40" value="<?php if(isset($_GET['firstname'])){echo $_GET['firstname'];}?>">
+        </p>
+       
+        
+
+        <p>
+        <input type="password" name="motDePasse" id="password" placeholder="Mot de passe" size="40" value="<?php if(isset($_GET['mdp'])){echo $_GET['mdp'];}?>"> 
+        </p>
+
+        <p>
+        <input type="password" name="verifMotDePasse" id="passwordbis" placeholder="Confirmez le mot de passe" size="40" value="<?php if(isset($_GET['verifpass'])){echo $_GET['verifpass'];}?>">  
+        </p>
+
+        <p>
+        <input type="email" name="mail" id="mail" placeholder="Email" size="40" value="<?php if(isset($_GET['mail'])){echo $_GET['mail'];}?>">
+        </p>
+
+        <p>
+        <input type="text" name="age" id="age" placeholder="Age" size="40" value="<?php if(isset($_GET['age'])){echo $_GET['age'];}?>">
+        </p>
+
+        <p>
+        <input type="text" name="photo" id="photo" placeholder="Photo" size="40" value="<?php if(isset($_GET['photo'])){echo $_GET['photo'];}?>">
+        </p>
+
+        <p>
+        <input type="text" name="citation" id="citation" placeholder="Citation" size="40" value="<?php if(isset($_GET['citation'])){echo $_GET['citation'];}?>">
+        </p>
+
+        <p>
+        <input type="text" name="language" id="language" placeholder="Langage preféré" size="40" value="<?php if(isset($_GET['language'])){echo $_GET['language'];}?>">
+        </p>
+
+        <p>
+        <textarea name="project" id="project" placeholder="Projet" rows="4" cols="40" value="<?php if(isset($_GET['project'])){echo $_GET['project'];}?>"></textarea>
+        </p>
+      
+        
+        <input type="submit" value="Créer un compte">
+    </form>
 		</div>
 	</div>
 </section>
@@ -55,55 +104,11 @@
 
 <body>
 
-<h1>Inscription</h1>
-
 <p><a href="../index.php">Retour au sommaire</a></p>
 <?php if(isset($_GET['error'])){echo $_GET['error'];}?>
 
 
-    <form method="post" action="verifUser.php">
-        <p><label for="">Nom :</label>
-        <input type="text" name="name" id="name" value="<?php if(isset($_GET['name'])){echo $_GET['name'];}?>">
-        </p>
-
-        <p><label for="">Prénom :</label>
-        <input type="text" name="firstname" id="firstname" value="<?php if(isset($_GET['firstname'])){echo $_GET['firstname'];}?>">
-        </p>
-
-        <p><label for="">Mot de passe :</label>
-        <input type="password" name="motDePasse" id="password" value="<?php if(isset($_GET['mdp'])){echo $_GET['mdp'];}?>">
-        </p>
-
-        <p><label for="">Verification du mot de passe :</label>
-        <input type="password" name="verifMotDePasse" id="passwordbis" value="<?php if(isset($_GET['verifpass'])){echo $_GET['verifpass'];}?>">
-        </p>
-
-        <p><label for="">Email :</label>
-        <input type="email" name="mail" id="mail" value="<?php if(isset($_GET['mail'])){echo $_GET['mail'];}?>">
-        </p>
-
-        <p><label for="">Age :</label>
-        <input type="text" name="age" id="age" value="<?php if(isset($_GET['age'])){echo $_GET['age'];}?>">
-        </p>
-
-        <p><label for="">Photo :</label>
-        <input type="text" name="photo" id="photo" value="http://chaire-eti.org/wp-content/uploads/2018/01/avatar-homme.png"><input type="file" name="upload" id="uploadPc" class="inputFilePc">
-        </p>
-
-        <p><label for="">Citation :</label>
-        <input type="text" name="citation" id="citation" value="<?php if(isset($_GET['citation'])){echo $_GET['citation'];}?>">
-        </p>
-
-        <p><label for="">Langage préféré :</label>
-        <input type="text" name="language" id="language" value="<?php if(isset($_GET['language'])){echo $_GET['language'];}?>">
-        </p>
-
-        <p><label for="">Projet :</label>
-        <textarea name="project" id="project" value="<?php if(isset($_GET['project'])){echo $_GET['project'];}?>"></textarea>
-        </p>
-
-        <input type="submit" value="Créer un compte">
-    </form>
+    
     <script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/core.js"></script>

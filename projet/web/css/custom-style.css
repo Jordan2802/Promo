@@ -206,6 +206,9 @@ i.box-circle-solid{
 .intro.intro-small{
 	height: 60%;
 }
+.intro.intro-small2{
+	height: 100%;
+}
 .intro-bg{
 	background:url("../img/aaa.jpg");
 	background-repeat:no-repeat;

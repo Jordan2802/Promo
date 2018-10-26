@@ -43,8 +43,8 @@ $users = $userManager->readAll();
 		      <li class="nav-item active">
 		        <a class="nav-link" href="index.php">ACCUEIL</a>
 		      </li>
-              
-		      
+
+
 		      <li class="nav-item">
 		        <a class="nav-link" href="./User/connexion.php">Connexion</a>
 					</li>
@@ -52,7 +52,7 @@ $users = $userManager->readAll();
 		        <a class="nav-link" href="./User/FormUser.php">Créer un compte</a>
 		      </li>
 		    </ul>
-		  </div>	
+		  </div>
 	</div>
 </nav>
 
@@ -77,32 +77,33 @@ $users = $userManager->readAll();
 			<?php if(empty($users)): ?>
         <p>il n'y a aucun utilisateur à afficher</p>
 
-    <?php else:?>   
+    <?php else:?>
         <?php if($users === false): ?>
             <p>Une erreur est survenue</p>
 
         <?php else: ?>
-            
+
 				<?php foreach($users as $user => $value):
 				$nameUser = $value['name'];
 				$firstUser = $value['firstname'];
 				$lang = $value['language'];
 				$citation = $value['citation'];
 				$idUser = $value['ID_user'];
+				$photo = $value['photo'];
 				?>
 
 			<div class="col-md-3 mb-md-5 mb-sm-4">
 				<div class="member-box anim-bt t-bottom">
-			        <img class="img-fluid" src="img/t-member-08.jpg" alt="">
+			        <img class="img-fluid" style="width:255px;height:255px;" src="<?= $photo ?>" alt="">
 			        <div class="overlay-content">
 			          <h3 class="text-white ml-3 my-0"><?= $nameUser . "</br> ".$firstUser ?></h3>
-			          <p class="text-white ml-3 mb-3">Langage: <?= $lang ?></p>
-								<p class="text-white ml-3 mb-3">Citation: <?= $value['citation'] ?></p>
+			          <p class="text-white ml-3 mb-3"><?= $lang ?></p>
+								<p class="text-white ml-3 mb-3"> <cite><?= $value['citation'] ?></cite></p>
 								<form action="User/profilUser.php" method="post">
 									<input type="hidden" name="iduser" value="<?= $idUser ?>">
 									<button type="submit">Voir le profil</button>
 								</form>
-								
+
 			          <span class="socail-l ml-3 mb-3">
 			            <a href="#" class="mr-2"><i class="fa fa-facebook box-circle-solid"></i></a>
 						<a href="#" class="mr-2"><i class="fa fa-twitter box-circle-solid"></i></a>
@@ -112,11 +113,11 @@ $users = $userManager->readAll();
 			    </div>
 			</div>
 								<?php endforeach; ?>
-						
+
 				<?php endif; ?>
 		<?php endif; ?>
 
-			
+
 		</div>
 	</div>
 </section>
@@ -203,7 +204,7 @@ $users = $userManager->readAll();
 							<li><a href="http://www.facebook.com/ecoledescodeurs" class="fa-box" title="Facebook"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="http://www.twitter.com/simplon08" class="tw-box" title="Twitter"><i class="fa fa-twitter"></i></a></li>
 		          <li><a href="https://fr.linkedin.com/company/simplon-co" class="ld-box" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-		
+
 		                </ul>
 					</div>
 				</div>

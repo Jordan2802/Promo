@@ -33,21 +33,21 @@ class UserManager{
 
     /**
      * UserManager  constructor.
-     * initialisation de la connexion à la base de donnée. 
+     * initialisation de la connexion à la base de donnée.
      */
     public function __construct(){
 
-        $host_name = 'localhost';
-        $database = 'promo';
-        $user_name = 'root';
-        $password = '';
+        $host_name = 'db759087613.hosting-data.io';
+        $database = 'db759087613';
+        $user_name = 'dbo759087613';
+        $password = 'azerty5488';
 
         $this->pdo = new PDO("mysql:host=$host_name; dbname=$database;", $user_name, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8') );
-    
-    } 
-    
+
+    }
+
     /**
-     * insert un objet user dans la base de donnée et met à jour l'objet passé en argument en lui 
+     * insert un objet user dans la base de donnée et met à jour l'objet passé en argument en lui
      * spécifiant un identifiant.
      *
      * @param User $user    objet de type User passé par référence.
@@ -68,17 +68,17 @@ class UserManager{
         $this->pdoStatement->bindValue(':language', $user->getLanguage(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':project', $user->getProject(), PDO::PARAM_STR);
         $this->pdoStatement->bindValue(':photo', $user->getPhoto(), PDO::PARAM_STR);
-        
+
 
         //executer la requete
 
         $executeIsOk = $this->pdoStatement->execute();
-        
+
         if(!$executeIsOk){
             return false;
         }
         else{
-            
+
             $id = $this->pdo->lastInsertId();
             $user = $this->read($id);
             return true;
@@ -128,7 +128,7 @@ class UserManager{
     /**
      * Récupère tous les objets User de la bdd
      *
-     * @return array|bool tableau d'objet User ou un tableau vide s'il n'y a aucun objet dans la 
+     * @return array|bool tableau d'objet User ou un tableau vide s'il n'y a aucun objet dans la
      * bdd, ou false si une erreur survient
      */
     public function readAll(){
@@ -178,7 +178,7 @@ class UserManager{
      * @return bool true en cas de succès ou false en cas d'erreur
      */
     public function delete(User $user){
-        
+
         $pdoStatement = $this->pdo->prepare('DELETE  FROM userpromo WHERE ID_user = :id LIMIT 1');
 
         $pdoStatement->bindValue(':id', $user->getId(), PDO::PARAM_INT);
@@ -240,14 +240,14 @@ class UserManager{
 
         if(!empty($mail)){
             $pdoStatement = $this->pdo->prepare('SELECT * FROM userpromo WHERE mail = :mail ');
-            $pdoStatement->execute(array(':mail'=>$mail                                                  
+            $pdoStatement->execute(array(':mail'=>$mail
                 )
             );
             $count = $pdoStatement->rowCount();
             if($count>0){
-                
+
                 $_SESSION['mail'] = $mail;
-               
+
                 return $pdoStatement->fetch();
             }else{
                 $message="false";
@@ -256,15 +256,15 @@ class UserManager{
         }
     }
 
-    
-
-  
 
 
-    
 
 
-    
+
+
+
+
+
 
 
 }

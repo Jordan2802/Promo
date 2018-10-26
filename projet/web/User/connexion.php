@@ -15,18 +15,18 @@ session_start();
 </head>
 
 <body>
-    <h1>Connexion</h1>
-    <div class="formCo">
-        <form action="verifSession.php" method="post" name="login">
+    <h1 class="display-4 text-white mb-2">CONNEXION</h1>
+            <form action="verifSession.php" method="post" name="login">
             
-        <p><?php if(isset($_GET['error'])){echo $_GET['error'];}?></p>
-            <input type="text" name="mail" placeholder="Votre email"> <br>
-            <input type="password" name="password" placeholder="Votre mot de passe"> <br>
-            
-            
-            <input type="submit" class="button" name="login" value="Se connecter">
-            <p>Pas encore de compte? <a href="FormUser.php">"Clique ici"</a></p>
-        </form>
+            <p><?php if(isset($_GET['error'])){echo $_GET['error'];}?></p>
+                <input type="text" name="mail" placeholder="Votre email"> <br>
+                <input type="password" name="password" placeholder="Votre mot de passe"> <br>
+                
+                
+                <input type="submit" class="button" name="login" value="Se connecter">
+                <p>Pas encore de compte? <a href="FormUser.php">"Clique ici"</a></p>
+                <p><a href="../index.php">Retour au sommaire</a></p>
+            </form>
         
 
     </div>
